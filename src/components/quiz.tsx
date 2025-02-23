@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Question } from "@/lib/schemas";
+import { AnimatePresence, motion } from "framer-motion";
 import {
+  Check,
   ChevronLeft,
   ChevronRight,
-  Check,
-  X,
-  RefreshCw,
   FileText,
+  RefreshCw,
+  X,
 } from "lucide-react";
-import QuizScore from "./score";
+import React, { useEffect, useState } from "react";
 import QuizReview from "./quiz-overview";
-import { Question } from "@/lib/schemas";
+import QuizScore from "./score";
 
 type QuizProps = {
   questions: Question[];
@@ -36,20 +36,16 @@ const QuestionCard: React.FC<{
       </h2>
       <div className="grid grid-cols-1 gap-4">
         {question.options.map((option, index) => (
-          <Button
+          <button
             key={index}
-            variant={
-              selectedAnswer === answerLabels[index] ? "secondary" : "outline"
-            }
-            className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-              showCorrectAnswer && answerLabels[index] === question.answer
-                ? "bg-green-600 hover:bg-green-700"
-                : showCorrectAnswer &&
-                    selectedAnswer === answerLabels[index] &&
-                    selectedAnswer !== question.answer
-                  ? "bg-red-600 hover:bg-red-700"
-                  : ""
-            }`}
+            className={`h-auto py-6 px-4 justify-start text-left whitespace-normal border hover:bg-blue-100  ${showCorrectAnswer && answerLabels[index] === question.answer
+              ? "bg-green-600 hover:bg-green-700"
+              : showCorrectAnswer &&
+                selectedAnswer === answerLabels[index] &&
+                selectedAnswer !== question.answer
+                ? "bg-red-600 hover:bg-red-700"
+                : ""
+              }`}
             onClick={() => onSelectAnswer(answerLabels[index])}
           >
             <span className="text-lg font-medium mr-4 shrink-0">
@@ -65,12 +61,13 @@ const QuestionCard: React.FC<{
               selectedAnswer !== question.answer && (
                 <X className="ml-2 shrink-0 text-white" size={20} />
               )}
-          </Button>
+          </button>
         ))}
       </div>
     </div>
   );
 };
+
 
 export default function Quiz({
   questions,

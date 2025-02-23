@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { experimental_useObject } from "ai/react";
+
 import { questionsSchema } from "@/lib/schemas";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -23,11 +25,68 @@ import { AnimatePresence, motion } from "framer-motion";
 import { VercelIcon, GitIcon } from "@/components/icons";
 import { generateQuizTitle } from "./(preview)/actions";
 
+
+const demo = [
+  {
+    question: "Who created the Python programming language?",
+    options: [
+      "Guido van Rossum",
+      "Dennis Ritchie",
+      "James Gosling",
+      "Bjarne Stroustrup"
+    ],
+    answer: "A"
+  },
+  {
+    question: "What type of language is Python?",
+    options: [
+      "Compiled Language",
+      "Statically Typed Language",
+      "Interpreted Language",
+      "Low-level Language"
+    ],
+    answer: "C"
+  },
+  {
+    question: "Which programming language is known for its simple syntax and readability, making it an excellent choice for beginners?",
+    options: [
+      "Java",
+      "Python",
+      "C++",
+      "C#"
+    ],
+    answer: "B"
+  },
+  {
+    question: "What are some common uses of Python?",
+    options: [
+      "Developing mobile applications",
+      "System programming",
+      "Creating operating systems",
+      "Web development, data science, and machine learning"
+    ],
+    answer: "D"
+  },
+  {
+    question: "In Python, how are variable data types handled?",
+    options: [
+      "Dynamically Typed",
+      "Statically Typed",
+      "Strongly Typed",
+      "Weakly Typed"
+    ],
+    answer: "A"
+  }
+];
+
+console.log(demo);
+
+
+
+
 export default function ChatWithFiles() {
   const [files, setFiles] = useState<File[]>([]);
-  const [questions, setQuestions] = useState<z.infer<typeof questionsSchema>>(
-    [],
-  );
+  const [questions, setQuestions] = useState<z.infer<typeof questionsSchema>>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [title, setTitle] = useState<string>();
 
@@ -44,10 +103,18 @@ export default function ChatWithFiles() {
       toast.error("Failed to generate quiz. Please try again.");
       setFiles([]);
     },
-    onFinish: ({ object }) => {
-      setQuestions(object ?? []);
-    },
   });
+
+  useEffect(() => {
+    if (partialQuestions) {
+      setQuestions(partialQuestions as []);
+    }
+  }, [partialQuestions]);
+
+  console.log(questions);
+  // console.log(questions);
+
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -72,6 +139,8 @@ export default function ChatWithFiles() {
     setFiles(validFiles);
   };
 
+
+
   const encodeFileAsBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -80,6 +149,8 @@ export default function ChatWithFiles() {
       reader.onerror = (error) => reject(error);
     });
   };
+
+
 
   const handleSubmitWithFiles = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -95,6 +166,12 @@ export default function ChatWithFiles() {
     setTitle(generatedTitle);
   };
 
+
+
+
+
+
+
   const clearPDF = () => {
     setFiles([]);
     setQuestions([]);
@@ -102,11 +179,20 @@ export default function ChatWithFiles() {
 
   const progress = partialQuestions ? (partialQuestions.length / 4) * 100 : 0;
 
-  if (questions.length === 4) {
+
+
+  if (demo?.length === 5) {
+    // console.log(object);
+    // setQuestions(partialQuestions as [])
     return (
-      <Quiz title={title ?? "Quiz"} questions={questions} clearPDF={clearPDF} />
+      <Quiz title={title ?? "Quiz"} questions={demo as []} clearPDF={clearPDF} />
     );
   }
+
+
+
+
+
 
   return (
     <div
@@ -142,6 +228,9 @@ export default function ChatWithFiles() {
           </motion.div>
         )}
       </AnimatePresence>
+
+
+
       <Card className="w-full max-w-md h-full border-0 sm:border sm:h-fit mt-12">
         <CardHeader className="text-center space-y-6">
           <div className="mx-auto flex items-center justify-center space-x-2 text-muted-foreground">
@@ -167,6 +256,8 @@ export default function ChatWithFiles() {
             </CardDescription>
           </div>
         </CardHeader>
+
+
         <CardContent>
           <form onSubmit={handleSubmitWithFiles} className="space-y-4">
             <div
@@ -230,6 +321,9 @@ export default function ChatWithFiles() {
           </CardFooter>
         )}
       </Card>
+
+
+
       <motion.div
         className="flex flex-row gap-4 items-center justify-between fixed bottom-6 text-xs "
         initial={{ y: 20, opacity: 0 }}
