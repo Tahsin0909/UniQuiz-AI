@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {}
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+
+root {
+  --radius: 12px
+}
+
+.btn-gradient {
+  background: linear-gradient(180deg, #00aaff 0%, #0066cc 100%);
+  transition: background 0.3s ease;
+}
+
+/* Green Gradient */
+.btn-gradient-green {
+  background: linear-gradient(180deg, #03c634 0%, #009300 100%);
+  transition: background 0.3s ease;
+}
+
+/* Red Gradient */
+.btn-gradient-red {
+  background: linear-gradient(180deg, #ff4d4d 0%, #cc0000 100%);
+  transition: background 0.3s ease;
 }

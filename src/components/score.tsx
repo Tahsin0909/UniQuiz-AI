@@ -1,5 +1,4 @@
-import { Progress } from "@/components/ui/progress"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 
 interface QuizScoreProps {
   correctAnswers: number
@@ -11,12 +10,13 @@ export default function QuizScore({ correctAnswers, totalQuestions }: QuizScoreP
   const roundedScore = Math.round(score)
 
   const getMessage = () => {
-    if (score === 100) return "Perfect score! Congratulations!"
-    if (score >= 80) return "Great job! You did excellently!"
-    if (score >= 60) return "Good effort! You're on the right track."
-    if (score >= 40) return "Not bad, but there's room for improvement."
-    return "Keep practicing, you'll get better!"
-  }
+    if (score >= 90) return "Outstanding! You're among the top scorers!";
+    if (score >= 75) return "Great job! You performed really well!";
+    if (score >= 50) return "Nice effort! Keep improving!";
+    if (score >= 30) return "You're getting there! A little more practice will help.";
+    return "Don't worry, keep practicing and you'll improve!";
+  };
+
 
   return (
     <Card className="w-full">

@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Question } from '@/lib/schemas'
 import { Check, X } from 'lucide-react'
 
@@ -12,14 +11,14 @@ export default function QuizReview({ questions, userAnswers }: QuizReviewProps) 
   const answerLabels: ("A" | "B" | "C" | "D")[] = ["A", "B", "C", "D"]
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold">Quiz Review</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="w-full">
+      <div>
+        <p className="text-2xl font-bold mx-4 mb-2">Quiz Review</p>
+      </div>
+      <div className="p-4 w-full">
         {questions.map((question, questionIndex) => (
-          <div key={questionIndex} className="mb-8 last:mb-0">
-            <h3 className="text-lg font-semibold mb-4">{question.question}</h3>
+          <div key={questionIndex} className="mb-8 last:mb-0 w-full">
+            <h3 className="text-lg font-semibold mb-4"> {questionIndex + 1}. {question.question}</h3>
             <div className="space-y-2">
               {question.options.map((option, optionIndex) => {
                 const currentLabel = answerLabels[optionIndex]
@@ -30,11 +29,11 @@ export default function QuizReview({ questions, userAnswers }: QuizReviewProps) 
                 return (
                   <div
                     key={optionIndex}
-                    className={`flex items-center p-4 rounded-lg ${isCorrect
-                        ? 'bg-green-100 dark:bg-green-700/50'
-                        : isIncorrectSelection
-                          ? 'bg-red-100 dark:bg-red-700/50'
-                          : 'border border-border'
+                    className={`flex items-center w-full p-4 rounded-lg ${isCorrect
+                      ? 'bg-green-400 dark:bg-green-700/50'
+                      : isIncorrectSelection
+                        ? 'bg-red-400 dark:bg-red-700/50'
+                        : 'border border-border'
                       }`}
                   >
                     <span className="text-lg font-medium mr-4 w-6">{currentLabel}</span>
@@ -45,14 +44,16 @@ export default function QuizReview({ questions, userAnswers }: QuizReviewProps) 
                     {isIncorrectSelection && (
                       <X className="ml-2 text-red-600 dark:text-red-400" size={20} />
                     )}
+
                   </div>
                 )
               })}
             </div>
+            <p className='leading-snug mt-3'>  <span className='font-semibold pr-1 text-blue-500'>Source:</span> {question.sourceText}</p>
           </div>
         ))}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
 
