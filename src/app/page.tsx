@@ -111,7 +111,7 @@ export default function ChatWithFiles() {
     }
   }, [partialQuestions]);
 
-  console.log(questions);
+  // console.log(questions);
   // console.log(questions);
 
 
@@ -130,7 +130,7 @@ export default function ChatWithFiles() {
     const validFiles = selectedFiles.filter(
       (file) => file.type === "application/pdf" && file.size <= 5 * 1024 * 1024,
     );
-    console.log(validFiles);
+    // console.log(validFiles);
 
     if (validFiles.length !== selectedFiles.length) {
       toast.error("Only PDF files under 5MB are allowed.");
@@ -177,7 +177,7 @@ export default function ChatWithFiles() {
     setQuestions([]);
   };
 
-  const progress = partialQuestions ? (partialQuestions.length / 4) * 100 : 0;
+  const progress = partialQuestions ? (partialQuestions.length / 10) * 100 : 0;
 
 
 
@@ -311,9 +311,9 @@ export default function ChatWithFiles() {
                     className={`h-2 w-2 rounded-full ${isLoading ? "bg-yellow-500/50 animate-pulse" : "bg-muted"
                       }`}
                   />
-                  <span className="text-muted-foreground text-center col-span-4 sm:col-span-2">
+                  <span className="text-muted-foreground text-nowrap text-center col-span-4 sm:col-span-2">
                     {partialQuestions
-                      ? `Generating question ${partialQuestions.length + 1} of 4`
+                      ? `Generating question ${partialQuestions.length + 1} of 10`
                       : "Analyzing PDF content"}
                   </span>
                 </div>

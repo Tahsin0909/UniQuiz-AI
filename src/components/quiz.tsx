@@ -35,41 +35,42 @@ const QuestionCard: React.FC<{
   setShowHint, }) => {
     const answerLabels = ["A", "B", "C", "D"];
 
-    console.log(selectedAnswer);
+    // console.log(selectedAnswer);
     return (
       <div className="space-y-6 w-full">
         <h2 className="text-lg font-semibold leading-tight pr-2">
           {question.question}
-          <span
-            className={`ml-2 px-2 py-1 rounded text-white capitalize text-sm ${question.difficulty === "easy"
+          <div
+            className={`flex gap-2 items-center `}
+          >
+            <span className={`px-2 py-1 rounded text-white capitalize text-sm  ${question.difficulty === "easy"
               ? "bg-green-500" // Green for Easy
               : question.difficulty === "medium"
                 ? "bg-yellow-500" // Yellow for Medium
                 : "bg-red-500" // Red for Hard
-              }`}
-          >
-            {question.difficulty}
-          </span>
-          {question.difficulty === "hard" && (
-            <div className="group relative w-fit hover:cursor-pointer">
-              <svg
-                onClick={() => setShowHint(!showhint)}
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 32 32"
-                className="hint-icon"
-              >
-                <path
-                  fill="#FFEB3B"
-                  d="M6.813 2.406L5.405 3.812L7.5 5.906L8.906 4.5zm18.375 0L23.093 4.5L24.5 5.906l2.094-2.093zM16 3.03q-.495.004-1 .064h-.03c-4.056.465-7.284 3.742-7.845 7.78c-.448 3.25.892 6.197 3.125 8.095a5.24 5.24 0 0 1 1.75 3.03v6h2.28c.348.597.983 1 1.72 1s1.372-.403 1.72-1H20v-4h.094v-1.188c0-1.466.762-2.944 2-4.093C23.75 17.06 25 14.705 25 12c0-4.94-4.066-9.016-9-8.97m0 2c3.865-.054 7 3.11 7 6.97c0 2.094-.97 3.938-2.313 5.28l.032.032A7.8 7.8 0 0 0 18.279 22h-4.374c-.22-1.714-.955-3.373-2.344-4.563c-1.767-1.5-2.82-3.76-2.468-6.312c.437-3.15 2.993-5.683 6.125-6.03a7 7 0 0 1 .78-.064zM2 12v2h3v-2zm25 0v2h3v-2zM7.5 20.094l-2.094 2.093l1.407 1.407L8.905 21.5zm17 0L23.094 21.5l2.093 2.094l1.407-1.407zM14 24h4v2h-4z"
-                  strokeWidth="0.2"
-                  stroke="#FFEB3B"
-                />
-              </svg>
-              <span className="group-hover:opacity-100 opacity-0 transition-opacity absolute text-xs p-[2px]  bg-[#FFEB3B] -right-8 top-2">Hint</span>
-            </div>
-          )}
+              }`}>{question.difficulty}</span>
+            {question.difficulty === "hard" && (
+              <div className={`group relative w-fit hover:cursor-pointer `}>
+                <svg
+                  onClick={() => setShowHint(!showhint)}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 32 32"
+                  className="hint-icon"
+                >
+                  <path
+                    fill="#FFEB3B"
+                    d="M6.813 2.406L5.405 3.812L7.5 5.906L8.906 4.5zm18.375 0L23.093 4.5L24.5 5.906l2.094-2.093zM16 3.03q-.495.004-1 .064h-.03c-4.056.465-7.284 3.742-7.845 7.78c-.448 3.25.892 6.197 3.125 8.095a5.24 5.24 0 0 1 1.75 3.03v6h2.28c.348.597.983 1 1.72 1s1.372-.403 1.72-1H20v-4h.094v-1.188c0-1.466.762-2.944 2-4.093C23.75 17.06 25 14.705 25 12c0-4.94-4.066-9.016-9-8.97m0 2c3.865-.054 7 3.11 7 6.97c0 2.094-.97 3.938-2.313 5.28l.032.032A7.8 7.8 0 0 0 18.279 22h-4.374c-.22-1.714-.955-3.373-2.344-4.563c-1.767-1.5-2.82-3.76-2.468-6.312c.437-3.15 2.993-5.683 6.125-6.03a7 7 0 0 1 .78-.064zM2 12v2h3v-2zm25 0v2h3v-2zM7.5 20.094l-2.094 2.093l1.407 1.407L8.905 21.5zm17 0L23.094 21.5l2.093 2.094l1.407-1.407zM14 24h4v2h-4z"
+                    strokeWidth="0.2"
+                    stroke="#FFEB3B"
+                  />
+                </svg>
+                <span className="group-hover:opacity-100 opacity-0 transition-opacity absolute text-xs p-[2px]  bg-[#FFEB3B] -right-8 top-2">Hint</span>
+              </div>
+            )}
+          </div>
+
 
 
         </h2>
