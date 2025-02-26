@@ -75,7 +75,7 @@ const QuestionCard: React.FC<{
 
         </h2>
 
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4  ">
           {question.options.map((option, index) => (
             <button
               key={index}
@@ -181,8 +181,8 @@ export default function Quiz({
 
   return (
     <div className="h-full">
-      <main className={`container flex items-center justify-center w-full  ${isSubmitted ? "" : "h-screen"}`}>
-        <div className={` py-12 rounded-lg  w-full max-w-xl ${isSubmitted ? "" : "shadow-xl px-20 "}`}>
+      <main className={`container my-4 lg:my-10 flex items-center justify-center w-full  ${isSubmitted ? "" : "h-screen"}`}>
+        <div className={` lg:py-12 py-4 rounded-lg  w-full max-w-xl ${isSubmitted ? "" : "shadow-xl px-4 lg:px-20 "}`}>
           <h1 className="text-3xl font-bold mb-8 text-center capitalize">
             {title}
           </h1>
@@ -236,7 +236,7 @@ export default function Quiz({
                     </div>
                   ) : (
                     <SmoothScrolling>
-                      <div className="space-y-8 w-full">
+                      <div className="space-y-8 w-full ">
                         <QuizScore
                           correctAnswers={score ?? 0}
                           totalQuestions={questions.length}
