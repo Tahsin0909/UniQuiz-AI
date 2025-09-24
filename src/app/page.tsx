@@ -26,63 +26,6 @@ import { z } from "zod";
 import { generateQuizTitle } from "./(preview)/actions";
 
 
-// const demo = [
-//   {
-//     question: "Who created the Python programming language?",
-//     options: [
-//       "Guido van Rossum",
-//       "Dennis Ritchie",
-//       "James Gosling",
-//       "Bjarne Stroustrup"
-//     ],
-//     answer: "A"
-//   },
-//   {
-//     question: "What type of language is Python?",
-//     options: [
-//       "Compiled Language",
-//       "Statically Typed Language",
-//       "Interpreted Language",
-//       "Low-level Language"
-//     ],
-//     answer: "C"
-//   },
-//   {
-//     question: "Which programming language is known for its simple syntax and readability, making it an excellent choice for beginners?",
-//     options: [
-//       "Java",
-//       "Python",
-//       "C++",
-//       "C#"
-//     ],
-//     answer: "B"
-//   },
-//   {
-//     question: "What are some common uses of Python?",
-//     options: [
-//       "Developing mobile applications",
-//       "System programming",
-//       "Creating operating systems",
-//       "Web development, data science, and machine learning"
-//     ],
-//     answer: "D"
-//   },
-//   {
-//     question: "In Python, how are variable data types handled?",
-//     options: [
-//       "Dynamically Typed",
-//       "Statically Typed",
-//       "Strongly Typed",
-//       "Weakly Typed"
-//     ],
-//     answer: "A"
-//   }
-// ];
-
-// console.log(demo);
-
-
-
 
 export default function ChatWithFiles() {
   const [files, setFiles] = useState<File[]>([]);
@@ -90,6 +33,7 @@ export default function ChatWithFiles() {
   const [isDragging, setIsDragging] = useState(false);
   const [title, setTitle] = useState<string>();
   const [showhint, setShowHint] = useState(false)
+
   const {
     submit,
     object: partialQuestions,
@@ -104,6 +48,7 @@ export default function ChatWithFiles() {
       setFiles([]);
     },
   });
+
 
   useEffect(() => {
     if (partialQuestions) {
@@ -162,6 +107,7 @@ export default function ChatWithFiles() {
       })),
     );
     submit({ files: encodedFiles });
+    // 24/09 working 
     const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
     setTitle(generatedTitle);
   };
@@ -180,9 +126,9 @@ export default function ChatWithFiles() {
   const progress = partialQuestions ? (partialQuestions.length / 10) * 100 : 0;
 
 
+  console.log(questions);
 
   if (questions?.length > 4) {
-    // console.log(object);
     // setQuestions(partialQuestions as [])
     return (
       <Quiz showhint={showhint} setShowHint={setShowHint} title={title ?? "Quiz"} questions={questions as []} clearPDF={clearPDF} />
