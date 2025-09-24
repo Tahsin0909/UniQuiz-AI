@@ -8,10 +8,10 @@ export async function POST(req: Request) {
   const files = await req.body
   console.log("files", files, "...................")
 
-  // return new Response(
-  //   JSON.stringify({ message: "GET request works!" }),
-  //   { status: 200, headers: { "Content-Type": "application/json" } }
-  // );
+  return new Response(
+    JSON.stringify({ message: "GET request works!" }),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
   const result = streamObject({
     model: google("gemini-1.5-pro-latest"),
     messages: [
