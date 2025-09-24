@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import { experimental_useObject } from "ai/react";
-
+import { useState } from "react";
 import { GitIcon } from "@/components/icons";
 import PageTransition from "@/components/PageTransition";
 import Quiz from "@/components/quiz";
@@ -33,33 +30,37 @@ export default function ChatWithFiles() {
   const [isDragging, setIsDragging] = useState(false);
   const [title, setTitle] = useState<string>();
   const [showhint, setShowHint] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const {
-    submit,
-    object: partialQuestions,
-    isLoading,
-  } = experimental_useObject({
-    api: "/api/generate-quiz",
-    schema: questionsSchema,
-    initialValue: undefined,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onError: (error) => {
-      toast.error("Failed to generate quiz. Please try again.");
-      setFiles([]);
-    },
-  });
+  // fetch function
+  const fetchQuestions = async (files: string) => {
+    const formData = new FormData()
+    formData.append("pdf", files)
+    try {
+      const res = await fetch("/api/generate-quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: formData,
+      });
 
-
-  useEffect(() => {
-    if (partialQuestions) {
-      setQuestions(partialQuestions as []);
+      // stream or normal json (depends on your backend response)
+      const data = await res.json();
+      setIsLoading(false)
+      setQuestions(data)
+    } catch (err) {
+      console.error("Error fetching questions:", err);
     }
-  }, [partialQuestions]);
+  };
+
+  // useEffect(() => {
+  //   fetchQuestions();
+  // }, []);
 
   // console.log(questions);
   // console.log(questions);
 
 
+  const progress = 50
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -98,6 +99,7 @@ export default function ChatWithFiles() {
 
 
   const handleSubmitWithFiles = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
     e.preventDefault();
     const encodedFiles = await Promise.all(
       files.map(async (file) => ({
@@ -106,7 +108,7 @@ export default function ChatWithFiles() {
         data: await encodeFileAsBase64(file),
       })),
     );
-    submit({ files: encodedFiles });
+    fetchQuestions(encodedFiles[0].data);
     // 24/09 working 
     const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
     setTitle(generatedTitle);
@@ -122,8 +124,6 @@ export default function ChatWithFiles() {
     setFiles([]);
     setQuestions([]);
   };
-
-  const progress = partialQuestions ? (partialQuestions.length / 10) * 100 : 0;
 
 
   console.log(questions);
@@ -258,8 +258,8 @@ export default function ChatWithFiles() {
                       }`}
                   />
                   <span className="text-muted-foreground text-nowrap text-center col-span-4 sm:col-span-2">
-                    {partialQuestions
-                      ? `Generating question ${partialQuestions.length + 1} of 10`
+                    {questions
+                      ? `Generating question ${questions.length + 1} of 10`
                       : "Analyzing PDF content"}
                   </span>
                 </div>

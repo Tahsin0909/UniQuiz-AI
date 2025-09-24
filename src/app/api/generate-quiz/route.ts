@@ -5,9 +5,13 @@ import { streamObject } from "ai";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const { files } = await req.json();
-  const firstFile = files[0].data;
+  const files = await req.body
+  console.log("files", files, "...................")
 
+  // return new Response(
+  //   JSON.stringify({ message: "GET request works!" }),
+  //   { status: 200, headers: { "Content-Type": "application/json" } }
+  // );
   const result = streamObject({
     model: google("gemini-1.5-pro-latest"),
     messages: [
@@ -25,7 +29,7 @@ export async function POST(req: Request) {
           },
           {
             type: "file",
-            data: firstFile,
+            data: files,
             mimeType: "application/pdf",
           },
         ],
@@ -44,4 +48,9 @@ export async function POST(req: Request) {
   return result.toTextStreamResponse();
 }
 
-// AIzaSyCqa0zDsm1WwzPgQ47h15QV0B6OmUxUfKU;
+export async function GET() {
+  return new Response(
+    JSON.stringify({ message: "GET request works!" }),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
+}
