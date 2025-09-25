@@ -43,8 +43,10 @@ export async function POST(req: Request) {
     },
   });
 
-  console.log(result)
-  return result.toTextStreamResponse();
+  console.log("ai result", result)
+  const res = result.toTextStreamResponse()
+  console.log("res", res)
+  return res
 }
 
 export async function GET() {

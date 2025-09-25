@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -33,25 +34,21 @@ export default function ChatWithFiles() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   // fetch function
-  const fetchQuestions = async (files: string) => {
-    const formData = new FormData()
-    formData.append("pdf", files)
+  const fetchQuestions = async (files: any) => {
     try {
       const res = await fetch("/api/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: formData,
+        body: JSON.stringify({ files }),   // send as JSON
       });
 
-      // stream or normal json (depends on your backend response)
       const data = await res.json();
-      setIsLoading(false)
-      setQuestions(data)
+      setIsLoading(false);
+      setQuestions(data);
     } catch (err) {
       console.error("Error fetching questions:", err);
     }
   };
-
   // useEffect(() => {
   //   fetchQuestions();
   // }, []);
