@@ -15,14 +15,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { questionsSchema } from "@/lib/schemas";
+import { questionSchema, questionsSchema } from "@/lib/schemas";
 import { AnimatePresence, motion } from "framer-motion";
 import { FileUp, Loader2 } from "lucide-react";
 import NextLink from "next/link";
 import { toast } from "sonner";
 import { z } from "zod";
 import { generateQuizTitle } from "./(preview)/actions";
-
+import { experimental_useObject as useObject } from '@ai-sdk/react';
 
 
 export default function ChatWithFiles() {
@@ -31,7 +31,13 @@ export default function ChatWithFiles() {
   const [isDragging, setIsDragging] = useState(false);
   const [title, setTitle] = useState<string>();
   const [showhint, setShowHint] = useState(false)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+
+
+  const { object, submit, isLoading, stop } = useObject({
+    api: '/api/use-object',
+    schema: questionSchema,
+  });
 
   // fetch function
   const fetchQuestions = async (files: any) => {
