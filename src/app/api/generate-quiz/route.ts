@@ -5,7 +5,9 @@ import { streamObject } from "ai";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
+
   const { files } = await req.json();
+  console.log(files)
   const firstFile = files[0].data;
 
   const result = streamObject({
@@ -41,6 +43,7 @@ export async function POST(req: Request) {
     },
   });
 
+  console.log(result)
   return result.toTextStreamResponse();
 }
 
