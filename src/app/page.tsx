@@ -39,6 +39,7 @@ export default function ChatWithFiles() {
     schema: questionSchema,
   });
 
+  console.log(object)
   // fetch function
   const fetchQuestions = async (files: any) => {
     try {
@@ -110,7 +111,8 @@ export default function ChatWithFiles() {
         data: await encodeFileAsBase64(file),
       })),
     );
-    fetchQuestions(encodedFiles[0].data);
+    submit(encodedFiles[0].data)
+    // fetchQuestions(encodedFiles[0].data);
     // 24/09 working 
     const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
     setTitle(generatedTitle);
