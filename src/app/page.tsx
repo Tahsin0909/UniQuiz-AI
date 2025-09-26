@@ -111,7 +111,7 @@ export default function ChatWithFiles() {
         data: await encodeFileAsBase64(file),
       })),
     );
-    submit(encodedFiles[0].data)
+    submit({ files: encodedFiles });
     // fetchQuestions(encodedFiles[0].data);
     // 24/09 working 
     const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
