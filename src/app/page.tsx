@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState } from "react";
 import { GitIcon } from "@/components/icons";
 import PageTransition from "@/components/PageTransition";
 import Quiz from "@/components/quiz";
@@ -14,15 +12,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { questionSchema, questionsSchema } from "@/lib/schemas";
+import { experimental_useObject as useObject } from '@ai-sdk/react';
 import { AnimatePresence, motion } from "framer-motion";
 import { FileUp, Loader2 } from "lucide-react";
 import NextLink from "next/link";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { generateQuizTitle } from "./(preview)/actions";
-import { experimental_useObject as useObject } from '@ai-sdk/react';
 
 
 export default function ChatWithFiles() {
@@ -91,17 +89,10 @@ export default function ChatWithFiles() {
       })),
     );
     submit({ files: encodedFiles });
-    // fetchQuestions(encodedFiles[0].data);
-    // 24/09 working 
+
     const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
     setTitle(generatedTitle);
   };
-
-
-
-
-
-
 
   const clearPDF = () => {
     setFiles([]);
@@ -230,9 +221,9 @@ export default function ChatWithFiles() {
               <div className="w-full space-y-1">
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Progress</span>
-                  <span>{Math.round(progress)}%</span>
+                  {/* <span>{Math.round(progress)}%</span>  */}
                 </div>
-                <Progress value={progress} className="h-2" />
+                {/* <Progress value={progress} className="h-2" /> */}
               </div>
               <div className="w-full space-y-2">
                 <div className="grid grid-cols-6 sm:grid-cols-4 items-center space-x-2 text-sm">
