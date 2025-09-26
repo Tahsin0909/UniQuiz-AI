@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GitIcon } from "@/components/icons";
 import PageTransition from "@/components/PageTransition";
 import Quiz from "@/components/quiz";
@@ -34,37 +34,16 @@ export default function ChatWithFiles() {
 
 
 
-  const { object, submit, isLoading, stop } = useObject({
+  const { object, submit, isLoading } = useObject({
     api: '/api/generate-quiz',
     schema: questionSchema,
   });
 
-  console.log(object)
-  // fetch function
-  const fetchQuestions = async (files: any) => {
-    try {
-      const res = await fetch("/api/generate-quiz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ files }),   // send as JSON
-      });
-
-      const data = await res.json();
-
-      setQuestions(data);
-    } catch (err) {
-      console.error("Error fetching questions:", err);
+  useEffect(() => {
+    if (object) {
+      setQuestions(object as []);
     }
-  };
-  // useEffect(() => {
-  //   fetchQuestions();
-  // }, []);
-
-  // console.log(questions);
-  // console.log(questions);
-
-
-  const progress = 50
+  }, [object]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
