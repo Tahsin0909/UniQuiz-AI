@@ -35,7 +35,7 @@ export default function ChatWithFiles() {
 
 
   const { object, submit, isLoading, stop } = useObject({
-    api: '/api/use-object',
+    api: '/api/generate-quiz',
     schema: questionSchema,
   });
 
@@ -49,7 +49,7 @@ export default function ChatWithFiles() {
       });
 
       const data = await res.json();
-      setIsLoading(false);
+
       setQuestions(data);
     } catch (err) {
       console.error("Error fetching questions:", err);
@@ -102,7 +102,6 @@ export default function ChatWithFiles() {
 
 
   const handleSubmitWithFiles = async (e: React.FormEvent<HTMLFormElement>) => {
-    setIsLoading(true)
     e.preventDefault();
     const encodedFiles = await Promise.all(
       files.map(async (file) => ({
