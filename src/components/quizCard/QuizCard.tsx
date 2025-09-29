@@ -1,4 +1,6 @@
+
 /* eslint-disable react/no-unescaped-entities */
+"use client"
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, Youtube, FileText, Link2, ArrowLeft, CheckCircle, X } from 'lucide-react';
