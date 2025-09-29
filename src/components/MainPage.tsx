@@ -12,7 +12,9 @@ const MainPage = () => {
     }
     return (
         <div>
-            <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 md:p-8">
+            <div
+
+                className="min-h-screen  p-4 md:p-8 flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -49,7 +51,7 @@ const MainPage = () => {
                             onClick={() => handleCardSelect('pdf-to-quiz')}
                             className="cursor-pointer group"
                         >
-                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-white/15 transition-all duration-300">
+                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-white/15 ">
                                 <div className="text-center">
                                     <div className="w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <FileText className="w-10 h-10 text-white" />

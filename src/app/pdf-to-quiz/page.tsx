@@ -4,18 +4,10 @@ import { GitIcon } from "@/components/icons";
 import PageTransition from "@/components/PageTransition";
 import Quiz from "@/components/quiz";
 import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
 import { questionSchema, questionsSchema } from "@/lib/schemas";
 import { experimental_useObject as useObject } from '@ai-sdk/react';
 import { AnimatePresence, motion } from "framer-motion";
-import { FileUp, Loader2 } from "lucide-react";
+import { DoorClosed, FileUp, Loader2 } from "lucide-react";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -109,12 +101,6 @@ export default function ChatWithFiles() {
             <Quiz showhint={showhint} setShowHint={setShowHint} title={title ?? "Quiz"} questions={questions as []} clearPDF={clearPDF} />
         );
     }
-
-
-
-
-
-
     return (
 
         <div
@@ -153,36 +139,32 @@ export default function ChatWithFiles() {
 
 
             <PageTransition>
-                <Card className="w-full max-w-md h-full sm:border sm:h-fit px-10 border-0 shadow-xl">
-                    <CardHeader className="text-center space-y-6">
-                        <div className="mx-auto flex items-center justify-center space-x-2 text-muted-foreground">
+                <div className="bg-white/10 hover:backdrop-blur-0 hover:bg-transparent backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl transition-all text-white">
+                    <div className="text-center space-y-6">
+                        <div className="mx-auto flex items-center justify-center space-x-2 ">
                             <div className="flex  items-center gap-2 p-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 15 15"><path fill="currentColor" d="M2.5 6.5V6H2v.5zm4 0V6H6v.5zm0 4H6v.5h.5zm7-7h.5v-.207l-.146-.147zm-3-3l.354-.354L10.707 0H10.5zM2.5 7h1V6h-1zm.5 4V8.5H2V11zm0-2.5v-2H2v2zm.5-.5h-1v1h1zm.5-.5a.5.5 0 0 1-.5.5v1A1.5 1.5 0 0 0 5 7.5zM3.5 7a.5.5 0 0 1 .5.5h1A1.5 1.5 0 0 0 3.5 6zM6 6.5v4h1v-4zm.5 4.5h1v-1h-1zM9 9.5v-2H8v2zM7.5 6h-1v1h1zM9 7.5A1.5 1.5 0 0 0 7.5 6v1a.5.5 0 0 1 .5.5zM7.5 11A1.5 1.5 0 0 0 9 9.5H8a.5.5 0 0 1-.5.5zM10 6v5h1V6zm.5 1H13V6h-2.5zm0 2H12V8h-1.5zM2 5V1.5H1V5zm11-1.5V5h1V3.5zM2.5 1h8V0h-8zm7.646-.146l3 3l.708-.708l-3-3zM2 1.5a.5.5 0 0 1 .5-.5V0A1.5 1.5 0 0 0 1 1.5zM1 12v1.5h1V12zm1.5 3h10v-1h-10zM14 13.5V12h-1v1.5zM12.5 15a1.5 1.5 0 0 0 1.5-1.5h-1a.5.5 0 0 1-.5.5zM1 13.5A1.5 1.5 0 0 0 2.5 15v-1a.5.5 0 0 1-.5-.5z" /></svg>
-                                <p className="text-lf font-semibold">
+                                <DoorClosed />
+                                <p className="text-lf font-semibold text-white">
                                     UniQuiz Ai
                                 </p>
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <CardTitle className="text-2xl font-bold">
+                            <h1 className="text-2xl font-bold">
                                 PDF Quiz Generator
-                            </CardTitle>
-                            <CardDescription className="text-base">
+                            </h1>
+                            <div className="text-base text-white">
                                 Upload a PDF to generate an interactive quiz based on its content
-                                using
-                                {/* <Link href="https://sdk.vercel.ai/providers/ai-sdk-providers/google-generative-ai">
-                  Google&apos;s Gemini Pro
-                </Link> */}
-                                .
-                            </CardDescription>
+                                using.
+                            </div>
                         </div>
-                    </CardHeader>
+                    </div>
 
 
-                    <CardContent>
-                        <form onSubmit={handleSubmitWithFiles} className="space-y-4">
+                    <div>
+                        <form onSubmit={handleSubmitWithFiles} className="space-y-4 my-8">
                             <div
-                                className={`relative flex flex-col items-center justify-center border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 transition-colors hover:border-muted-foreground/50`}
+                                className={`relative flex flex-col items-center justify-center border-2 border-dashed border-muted-foreground/25 rounded-lg p-10 transition-colors hover:border-muted-foreground/50  `}
                             >
                                 <input
                                     type="file"
@@ -190,8 +172,8 @@ export default function ChatWithFiles() {
                                     accept="application/pdf"
                                     className="absolute inset-0 opacity-0 cursor-pointer"
                                 />
-                                <FileUp className="h-8 w-8 mb-2 text-muted-foreground" />
-                                <p className="text-sm text-muted-foreground text-center">
+                                <FileUp className="h-8 w-8 mb-2  !text-white" />
+                                <p className="text-sm  text-center !text-white">
                                     {files.length > 0 ? (
                                         <span className="font-medium text-foreground">
                                             {files[0].name}
@@ -216,11 +198,11 @@ export default function ChatWithFiles() {
                                 )}
                             </Button>
                         </form>
-                    </CardContent>
+                    </div>
                     {isLoading && (
-                        <CardFooter className="flex flex-col space-y-4">
+                        <div className="flex flex-col space-y-4">
                             <div className="w-full space-y-1">
-                                <div className="flex justify-between text-sm text-muted-foreground">
+                                <div className="flex justify-between text-sm ">
                                     <span>Progress</span>
                                     {/* <span>{Math.round(progress)}%</span>  */}
                                 </div>
@@ -232,16 +214,16 @@ export default function ChatWithFiles() {
                                         className={`h-2 w-2 rounded-full ${isLoading ? "bg-yellow-500/50 animate-pulse" : "bg-muted"
                                             }`}
                                     />
-                                    <span className="text-muted-foreground text-nowrap text-center col-span-4 sm:col-span-2">
+                                    <span className=" text-nowrap text-center col-span-4 sm:col-span-2">
                                         {questions
                                             ? `Generating question ${questions.length + 1} of 10`
                                             : "Analyzing PDF content"}
                                     </span>
                                 </div>
                             </div>
-                        </CardFooter>
+                        </div>
                     )}
-                </Card>
+                </div>
             </PageTransition>
 
 
