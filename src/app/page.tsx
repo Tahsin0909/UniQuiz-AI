@@ -1,9 +1,10 @@
+import QuizCards from '@/components/quizCard/QuizCard';
 import React from 'react';
 
 const page = () => {
   return (
     <div>
-      ssf
+      <QuizCards />
     </div>
   );
 };
