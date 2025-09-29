@@ -118,7 +118,7 @@ export default function ChatWithFiles() {
     return (
 
         <div
-            className="min-h-[100vh] w-full flex justify-center items-center"
+            className="min-h-[100vh] w-full flex justify-center items-center container"
             onDragOver={(e) => {
                 e.preventDefault();
                 setIsDragging(true);
