@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function rock(r: string) {
   return r
 }
+
+export function tru(r: string) {
+  return r
+}
