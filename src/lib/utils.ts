@@ -16,3 +16,7 @@ export function tru(r: string) {
 export function trugt(r: string) {
   return r
 }
+
+export function truggt(r: string) {
+  return r
+}
