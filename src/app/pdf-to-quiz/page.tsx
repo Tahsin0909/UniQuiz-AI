@@ -2,7 +2,6 @@
 
 import PageTransition from "@/components/PageTransition";
 import Quiz from "@/components/quiz";
-import { Button } from "@/components/ui/button";
 import { questionSchema, questionsSchema } from "@/lib/schemas";
 import { experimental_useObject as useObject } from '@ai-sdk/react';
 import { AnimatePresence, motion } from "framer-motion";
@@ -173,20 +172,28 @@ export default function ChatWithFiles() {
                                     )}
                                 </p>
                             </div>
-                            <Button
-                                type="submit"
-                                className="relative inline-flex items-center gap-2 px-6 py-3 font-semibold text-slate-50 bg-gradient-to-tr from-slate-900/30 via-slate-900/70 to-slate-900/30 ring-4 ring-slate-900/20 rounded-full overflow-hidden hover:opacity-90 transition-opacity before:absolute before:top-4 before:left-1/2 before:-translate-x-1/2 before:w-[100px] before:h-[100px] before:rounded-full before:bg-gradient-to-b before:from-slate-50/10 before:blur-xl w-full"
+
+                            <button
                                 disabled={files.length === 0}
+                                className="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md bg-gray-800/30 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-600/50 border border-white/20 w-full"
                             >
-                                {isLoading ? (
-                                    <span className="flex items-center space-x-2">
-                                        <Loader2 className="h-4 w-4 animate-spin" />
-                                        <span>Generating Quiz...</span>
-                                    </span>
-                                ) : (
-                                    "Generate Quiz"
-                                )}
-                            </Button>
+                                <span className="text-lg">
+                                    {isLoading ? (
+                                        <span className="flex items-center space-x-2">
+                                            <Loader2 className="h-4 w-4 animate-spin" />
+                                            <span>Generating Quiz...</span>
+                                        </span>
+                                    ) : (
+                                        "Generate Quiz"
+                                    )}
+                                </span>
+                                <div
+                                    className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]"
+                                >
+                                    <div className="relative h-full w-10 bg-white/20"></div>
+                                </div>
+                            </button>
+
                         </form>
                     </div>
                     {isLoading && (

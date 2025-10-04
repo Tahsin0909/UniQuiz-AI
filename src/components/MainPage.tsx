@@ -60,7 +60,7 @@ const MainPage = () => {
                                     <p className="text-slate-300 text-lg mb-8">
                                         Upload your PDF document and we'll create interactive quizzes from the content
                                     </p>
-                                    <div className="relative inline-flex items-center gap-2 px-6 py-3 font-semibold text-slate-50 bg-gradient-to-tr from-slate-900/30 via-slate-900/70 to-slate-900/30 ring-4 ring-slate-900/20 rounded-full overflow-hidden hover:opacity-90 transition-opacity before:absolute before:top-4 before:left-1/2 before:-translate-x-1/2 before:w-[100px] before:h-[100px] before:rounded-full before:bg-gradient-to-b before:from-slate-50/10 before:blur-xl">
+                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                                         <div className="flex items-center justify-center gap-3 text-slate-300">
                                             <Upload className="w-5 h-5" />
                                             <span>Drag & Drop or Browse</span>
@@ -89,7 +89,7 @@ const MainPage = () => {
                                     <p className="text-slate-300 text-lg mb-8">
                                         Paste a YouTube video URL and we'll analyze the content to create quizzes
                                     </p>
-                                    <div className="relative inline-flex items-center gap-2 px-6 py-3 font-semibold text-slate-50 bg-gradient-to-tr from-slate-900/30 via-slate-900/70 to-slate-900/30 ring-4 ring-slate-900/20 rounded-full overflow-hidden hover:opacity-90 transition-opacity before:absolute before:top-4 before:left-1/2 before:-translate-x-1/2 before:w-[100px] before:h-[100px] before:rounded-full before:bg-gradient-to-b before:from-slate-50/10 before:blur-xl">
+                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                                         <div className="flex items-center justify-center gap-3 text-slate-300">
                                             <Link2 className="w-5 h-5" />
                                             <span>Enter YouTube URL</span>
