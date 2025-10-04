@@ -139,18 +139,18 @@ export default function ChatWithFiles() {
 
 
             <PageTransition>
-                <div className="bg-white/10 hover:backdrop-blur-0 hover:bg-transparent backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl transition-all text-white">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-transparent transition-all duration-300">
                     <div className="text-center space-y-6">
                         <div className="mx-auto flex items-center justify-center space-x-2 ">
                             <div className="flex  items-center gap-2 p-2">
-                                <DoorClosed />
+                                <DoorClosed className="text-white" />
                                 <p className="text-lf font-semibold text-white">
                                     UniQuiz Ai
                                 </p>
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <h1 className="text-2xl font-bold">
+                            <h1 className="text-2xl font-bold text-white">
                                 PDF Quiz Generator
                             </h1>
                             <div className="text-base text-white">

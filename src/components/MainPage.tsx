@@ -46,12 +46,12 @@ const MainPage = () => {
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
-                            whileHover={{ y: -8, scale: 1.02 }}
+                            // whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handleCardSelect('pdf-to-quiz')}
                             className="cursor-pointer group"
                         >
-                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-white/15 ">
+                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-transparent ">
                                 <div className="text-center">
                                     <div className="w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <FileText className="w-10 h-10 text-white" />
@@ -75,12 +75,12 @@ const MainPage = () => {
                             initial={{ opacity: 0, x: 50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.8 }}
-                            whileHover={{ y: -8, scale: 1.02 }}
+                            // whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handleCardSelect('youtube')}
                             className="cursor-pointer group"
                         >
-                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-white/15 transition-all duration-300">
+                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-transparent transition-all duration-300">
                                 <div className="text-center">
                                     <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-rose-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <Youtube className="w-10 h-10 text-white" />
