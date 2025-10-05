@@ -159,12 +159,12 @@ export default function ChatWithFiles() {
                                     type="file"
                                     onChange={handleFileChange}
                                     accept="application/pdf"
-                                    className="absolute inset-0 opacity-0 cursor-pointer"
+                                    className="absolute inset-0 opacity-0 cursor-pointer text-white"
                                 />
                                 <FileUp className="h-8 w-8 mb-2  !text-white" />
                                 <p className="text-sm  text-center !text-white">
                                     {files.length > 0 ? (
-                                        <span className="font-medium text-foreground">
+                                        <span className="font-medium text-foreground text-white">
                                             {files[0].name}
                                         </span>
                                     ) : (

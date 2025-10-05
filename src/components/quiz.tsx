@@ -70,9 +70,6 @@ const QuestionCard: React.FC<{
               </div>
             )}
           </div>
-
-
-
         </h2>
 
         <div className="grid grid-cols-1 gap-4  ">
