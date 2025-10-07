@@ -77,7 +77,7 @@ const MainPage = () => {
                             transition={{ duration: 0.8, delay: 0.8 }}
                             // whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            onClick={() => handleCardSelect('youtube')}
+                            onClick={() => handleCardSelect('youtube-to-quiz')}
                             className="cursor-pointer group"
                         >
                             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 h-full shadow-2xl hover:bg-transparent transition-all duration-300">
