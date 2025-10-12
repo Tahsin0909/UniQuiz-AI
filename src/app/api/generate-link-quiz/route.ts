@@ -1,7 +1,7 @@
 import { questionSchema, questionsSchema } from "@/lib/schemas";
 import { google } from "@ai-sdk/google";
 import { streamObject } from "ai";
-import { getTranscript } from "youtube-transcript";
+import { YoutubeTranscript } from '@danielxceron/youtube-transcript';
 
 export const maxDuration = 60;
 
@@ -25,7 +25,8 @@ export async function POST(req: Request) {
         // get transcript using youtube-transcript
         let transcriptData;
         try {
-            transcriptData = await getTranscript(videoId);
+            transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+            console.log(transcriptData)
         } catch (err) {
             console.error("Transcript error:", err);
             return new Response(
