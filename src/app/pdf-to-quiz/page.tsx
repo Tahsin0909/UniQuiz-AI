@@ -98,6 +98,7 @@ export default function ChatWithFiles() {
             <Quiz showhint={showhint} setShowHint={setShowHint} title={title ?? "Quiz"} questions={questions as []} clearPDF={clearPDF} />
         );
     }
+
     return (
 
         <div

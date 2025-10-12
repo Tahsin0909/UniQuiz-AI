@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import Quiz from "../quiz";
 
 const LinkInput = () => {
     const [link, setLink] = useState("");
     const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState("");
+    const [result, setResult] = useState(null);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -21,6 +22,13 @@ const LinkInput = () => {
         setResult(data);
         setLoading(false);
     };
+
+    if (result?.length > 4) {
+        // setQuestions(partialQuestions as [])
+        return (
+            <Quiz showhint={showhint} setShowHint={setShowHint} title={title ?? "Quiz"} questions={result as []} clearPDF={clearPDF} />
+        );
+    }
 
     return (
         <div className="p-4 max-w-md mx-auto pt-40">
