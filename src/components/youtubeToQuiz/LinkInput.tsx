@@ -11,7 +11,7 @@ const LinkInput = () => {
         setLoading(true);
         setResult("");
 
-        const res = await fetch("/api/generate-youtube-quiz", {
+        const res = await fetch("/api/generate-link-quiz", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ videoUrl: link }),
@@ -23,7 +23,7 @@ const LinkInput = () => {
     };
 
     return (
-        <div className="p-4 max-w-md mx-auto">
+        <div className="p-4 max-w-md mx-auto pt-40">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
