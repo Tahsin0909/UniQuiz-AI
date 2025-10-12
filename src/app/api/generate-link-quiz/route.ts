@@ -44,7 +44,7 @@ export async function POST(req: Request) {
                 {
                     role: "system",
                     content:
-                        "You are a teacher. Create 4 multiple-choice questions from the given video transcript. Each question must have 4 options (A, B, C, D) and a hint.",
+                        "You are a teacher. Create 10 multiple-choice questions from the given video transcript. Each question must have 4 options (A, B, C, D) and a hint.",
                 },
                 { role: "user", content: transcriptText },
             ],
