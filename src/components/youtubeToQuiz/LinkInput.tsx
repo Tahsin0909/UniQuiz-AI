@@ -1,16 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import Quiz from "../quiz";
+import { questionsSchema } from "@/lib/schemas";
+import { z } from "zod";
 
 const LinkInput = () => {
     const [link, setLink] = useState("");
     const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState(null);
+    const [questions, setQuestions] = useState<z.infer<typeof questionsSchema>>([]);
+    // const [title, setTitle] = useState<string>();
+    const [showhint, setShowHint] = useState(false)
+
+    const clearPDF = () => {
+        setQuestions([]);
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        setResult("");
 
         const res = await fetch("/api/generate-link-quiz", {
             method: "POST",
@@ -18,15 +25,15 @@ const LinkInput = () => {
             body: JSON.stringify({ videoUrl: link }),
         });
 
-        const data = await res.text();
-        setResult(data);
+        const data = await res.json();
+        setQuestions(data);
         setLoading(false);
     };
 
-    if (result?.length > 4) {
+    if (questions?.length > 1) {
         // setQuestions(partialQuestions as [])
         return (
-            <Quiz showhint={showhint} setShowHint={setShowHint} title={title ?? "Quiz"} questions={result as []} clearPDF={clearPDF} />
+            <Quiz showhint={showhint} setShowHint={setShowHint} title={"Quiz"} questions={questions as []} clearPDF={clearPDF} />
         );
     }
 
@@ -48,13 +55,6 @@ const LinkInput = () => {
                     {loading ? "Generating Quiz..." : "Generate Quiz"}
                 </button>
             </form>
-
-            {result && (
-                <div className="mt-4 border p-2 bg-gray-50 rounded">
-                    <h2 className="font-semibold mb-2">Generated Quiz:</h2>
-                    <pre className="text-sm whitespace-pre-wrap">{result}</pre>
-                </div>
-            )}
         </div>
     );
 };
