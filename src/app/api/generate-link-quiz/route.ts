@@ -1,6 +1,7 @@
 import { questionSchema, questionsSchema } from "@/lib/schemas";
 import { google } from "@ai-sdk/google";
 import { streamObject } from "ai";
+import { getTranscript } from "youtube-transcript";
 
 export const maxDuration = 60;
 
@@ -21,15 +22,14 @@ export async function POST(req: Request) {
             });
         }
 
-        // get transcript
-        const transcriptRes = await fetch(
-            `https://youtubetranscriptapi.vercel.app/api/transcript/${videoId}`
-        );
-        const transcriptData = await transcriptRes.json();
-
-        if (!Array.isArray(transcriptData)) {
+        // get transcript using youtube-transcript
+        let transcriptData;
+        try {
+            transcriptData = await getTranscript(videoId);
+        } catch (err) {
+            console.error("Transcript error:", err);
             return new Response(
-                JSON.stringify({ error: "Transcript not found for this video" }),
+                JSON.stringify({ error: "Transcript not available for this video" }),
                 { status: 404 }
             );
         }
