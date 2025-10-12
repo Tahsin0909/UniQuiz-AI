@@ -31,7 +31,7 @@ export default function RootLayout({
             background:
               "linear-gradient(50deg, #032E5CFF 37.44%, #36719BFF 67.11%)",
           }}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  `}
       >
         <Navbar />
         {children}
