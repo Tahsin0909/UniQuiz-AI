@@ -3,34 +3,50 @@ import React, { useState } from "react";
 
 const LinkInput = () => {
     const [link, setLink] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [result, setResult] = useState("");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLink(e.target.value);
-    };
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        alert(`Your link is: ${link}`);
+        setLoading(true);
+        setResult("");
+
+        const res = await fetch("/api/generate-youtube-quiz", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ videoUrl: link }),
+        });
+
+        const data = await res.text();
+        setResult(data);
+        setLoading(false);
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 max-w-md mx-auto">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Enter your link"
+                    placeholder="Enter YouTube video link"
                     value={link}
-                    onChange={handleChange}
-                    className="border p-2 rounded w-full"
+                    onChange={(e) => setLink(e.target.value)}
+                    className="border p-2 w-full rounded"
                 />
                 <button
                     type="submit"
-                    className="mt-2 bg-blue-500 text-white p-2 rounded"
+                    disabled={loading}
+                    className="mt-2 bg-blue-500 text-white p-2 rounded w-full"
                 >
-                    Submit
+                    {loading ? "Generating Quiz..." : "Generate Quiz"}
                 </button>
             </form>
-            <p className="mt-2">Current Link: {link}</p>
+
+            {result && (
+                <div className="mt-4 border p-2 bg-gray-50 rounded">
+                    <h2 className="font-semibold mb-2">Generated Quiz:</h2>
+                    <pre className="text-sm whitespace-pre-wrap">{result}</pre>
+                </div>
+            )}
         </div>
     );
 };
