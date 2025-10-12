@@ -14,6 +14,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 import SmoothScrolling from "./smoothScroll/SmoothScroll";
+import RootWrapper from "./shared/RootWraper";
 
 type QuizProps = {
   questions: Question[];
@@ -177,7 +178,7 @@ export default function Quiz({
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="h-full">
+    <RootWrapper>
       <main className={`container my-4 lg:my-10  flex items-center justify-center  ${isSubmitted ? "" : "h-screen"}`}>
         <div className={` lg:py-12 py-4 rounded-lg w-full bg-white/10 backdrop-blur-xl max-w-xl ${isSubmitted ? "" : "shadow-xl px-4 lg:px-20 "}`}>
           <h1 className="text-3xl font-bold mb-8 text-center capitalize text-white">
@@ -266,6 +267,6 @@ export default function Quiz({
           </div>
         </div>
       </main>
-    </div>
+    </RootWrapper>
   );
 }

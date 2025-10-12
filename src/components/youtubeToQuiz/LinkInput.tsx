@@ -38,7 +38,7 @@ const LinkInput = () => {
     }
 
     return (
-        <div className="p-4 max-w-md mx-auto pt-40">
+        <div className="max-w-md mx-auto">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
