@@ -14,6 +14,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 import SmoothScrolling from "./smoothScroll/SmoothScroll";
+import SharedButton from "./shared/SharedButton";
 
 type QuizProps = {
   questions: Question[];
@@ -242,19 +243,22 @@ export default function Quiz({
                           <QuizReview questions={questions} userAnswers={answers} />
                         </div>
                         <div className="flex justify-center space-x-4 pt-4 px-8">
-                          <Button
+                          <SharedButton
                             onClick={handleReset}
-                            variant="outline"
-                            className="bg-muted hover:bg-muted/80 w-full"
                           >
-                            <RefreshCw className="mr-2 h-4 w-4" /> Reset Quiz
-                          </Button>
-                          <Button
+                            <div className="flex items-center justify-center">
+                              <RefreshCw className="mr-2 h-4 w-4" />
+                              <span>Try Another PDF</span>
+                            </div>
+                          </SharedButton>
+                          <SharedButton
                             onClick={clearPDF}
-                            className="bg-primary hover:bg-primary/90 w-full"
                           >
-                            <FileText className="mr-2 h-4 w-4" /> Try Another PDF
-                          </Button>
+                            <div className="flex items-center justify-center">
+                              <FileText className="mr-2 h-4 w-4" />
+                              <span>Try Another PDF</span>
+                            </div>
+                          </SharedButton>
                         </div>
                       </div>
                     </SmoothScrolling>

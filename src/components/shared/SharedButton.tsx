@@ -2,19 +2,21 @@ import React from "react";
 import { Loader2 } from "lucide-react";
 
 interface SharedButtonProps {
-    title?: string; // button text
-    loadingText?: string; // text while loading
-    isLoading?: boolean; // optional loading state
+    title?: string; // optional title text
+    loadingText?: string; // text when loading
+    isLoading?: boolean; // optional loading
     disabled?: boolean; // optional disabled
     onClick?: () => void; // click handler
+    children?: React.ReactNode; // optional custom content
 }
 
 const SharedButton: React.FC<SharedButtonProps> = ({
-    title = "Submit",
+    title,
     loadingText = "Loading...",
     isLoading = false,
     disabled = false,
     onClick,
+    children,
 }) => {
     return (
         <button
@@ -30,7 +32,7 @@ const SharedButton: React.FC<SharedButtonProps> = ({
                         <span>{loadingText}</span>
                     </span>
                 ) : (
-                    title
+                    children || title
                 )}
             </span>
 
