@@ -179,7 +179,7 @@ export default function Quiz({
   return (
     <div>
       <main className={`container my-4 lg:my-10  flex items-center justify-center  ${isSubmitted ? "" : "h-screen"}`}>
-        <div className={` lg:py-12 py-4 rounded-lg w-full bg-white/10 backdrop-blur-xl max-w-xl ${isSubmitted ? "" : "shadow-xl px-4 lg:px-20 "}`}>
+        <div className={` lg:py-12 py-4 rounded-lg w-full bg-white/10 backdrop-blur-xl max-w-2xl ${isSubmitted ? "" : "shadow-xl px-4 lg:px-20 "}`}>
           <h1 className="text-3xl font-bold mb-8 text-center capitalize text-white">
             {title}
           </h1>
@@ -233,7 +233,7 @@ export default function Quiz({
                     </div>
                   ) : (
                     <SmoothScrolling>
-                      <div className="space-y-8 w-full ">
+                      <div className="space-y-8 w-full">
                         <QuizScore
                           correctAnswers={score ?? 0}
                           totalQuestions={questions.length}
@@ -241,7 +241,7 @@ export default function Quiz({
                         <div className="space-y-12">
                           <QuizReview questions={questions} userAnswers={answers} />
                         </div>
-                        <div className="flex justify-center space-x-4 pt-4">
+                        <div className="flex justify-center space-x-4 pt-4 px-8">
                           <Button
                             onClick={handleReset}
                             variant="outline"
