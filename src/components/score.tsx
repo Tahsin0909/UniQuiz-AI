@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card"
 
 interface QuizScoreProps {
   correctAnswers: number
@@ -19,8 +18,8 @@ export default function QuizScore({ correctAnswers, totalQuestions }: QuizScoreP
 
 
   return (
-    <Card className="w-full">
-      <CardContent className="space-y-4 p-8">
+    <div className="w-full">
+      <div className="space-y-4 p-8">
         <div className="text-center">
           <p className="text-4xl font-bold">{roundedScore}%</p>
           <p className="text-sm text-muted-foreground">
@@ -28,7 +27,7 @@ export default function QuizScore({ correctAnswers, totalQuestions }: QuizScoreP
           </p>
         </div>
         <p className="text-center font-medium">{getMessage()}</p>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
